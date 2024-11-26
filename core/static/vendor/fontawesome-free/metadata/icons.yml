@@ -20475,7 +20475,7 @@ users:
       - group
       - people
       - persons
-      - profiles
+      - profile
       - team
   styles:
     - solid
@@ -20509,7 +20509,7 @@ users-slash:
       - group
       - people
       - persons
-      - profiles
+      - profile
       - separate
       - team
       - ungroup

@@ -30,8 +30,8 @@
              data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Mi cuenta:</h6>
-                <a class="collapse-item" href="login.html">Perfil</a>
-                <a class="collapse-item" href="login.html">Grupo familiar</a>
+                <a class="collapse-item" href={% url 'profile' %}>Perfil</a>
+                <a class="collapse-item" href="login.html">Grupo Familiar</a>
             </div>
         </div>
     </li>
@@ -109,7 +109,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href={% url 'logout' %}>
-            <i class="fas fa-fw fa-tachometer-alt"></i>
+           <i class="fas fa-sign-out-alt"></i>
             <span>Cerrar sesión</span></a>
     </li>
 
