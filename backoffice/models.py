@@ -11,7 +11,7 @@ class Profile(models.Model):
 
 	user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 	image = models.ImageField(default='users/user_profile.jpg', upload_to='users/')
-	birthday = models.CharField(max_length=80, null=True, blank=True)
+	birthday = models.DateField(max_length=80, null=True, blank=True)
 	address = models.TextField(null=True, blank=True)
 	country = CountryField()
 	gender = models.CharField(max_length=80, null=True, blank=True)
@@ -24,6 +24,10 @@ class Profile(models.Model):
 		verbose_name = 'Perfil'
 		verbose_name_plural = 'Perfiles'
 		ordering = ['-id']
+
+	def __str__(self):
+		return '{}'.format(self.user)
+
 
 def create_user_profile(sender, instance, created, **kwargs):
 	if created:

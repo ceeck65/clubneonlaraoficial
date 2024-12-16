@@ -1,12 +1,17 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+
+from vehicle.models import Vehicle
 from .forms import ProfileForms
 
 # Create your views here.
 
 @login_required(login_url='login')
 def dashboard(request):
-    return render(request, "backoffice/dashboard.html")
+    vehicle =  Vehicle.objects.filter(user= request.user.id).order_by('id').first()
+    return render(request, "backoffice/dashboard.html", {'vehicle': vehicle})
+
+
 
 
 # PROFILES
@@ -16,9 +21,3 @@ def profile(request):
     profiles_forms = ProfileForms
     return render(request, "profile/index.html", {'form': profiles_forms})
 
-
-# PROFILES
-
-@login_required(login_url='login')
-def vehicles(request):
-    return render(request, "vehicles/index.html")

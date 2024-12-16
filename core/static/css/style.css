@@ -381,3 +381,19 @@
     padding-right: 0;
     border-right: none;
 }
+
+
+.link  {
+    color: #74a8fa;
+    font-size: 1.10em;
+    text-transform: capitalize;
+    text-decoration: none !important;
+}
+
+.link a {
+    text-decoration: none !important;
+}
+
+.link:hover, link a:hover {
+    color: #97bdf4;
+}

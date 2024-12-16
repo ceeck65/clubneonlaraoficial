@@ -106,24 +106,35 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Mis vehiculos</h6>
                                 </div>
                                 <div class="card-body">
+                                    {% if vehicle == None %}
+                                        <div class="col-12 text-center mt-8">
+                                            <h3 class="text-center mb-3">
+                                                No tienes Vehiculos registrados
+                                            </h3>
+                                            <a href="{% url 'vehicles_new' %}" class="link mt-4">
+                                                <i class="fas fa-plus-circle pr-1"></i> Registra tu vehículo</a>
+                                        </div>
+                                    {% else %}
                                     <div class="row">
                                         <div class="col-auto">
                                             <span class="text-info">Ficha Técnica</span>
                                             <ul class="mt-3">
-                                                <li><span><strong>Número asignado:</strong> 4</span></li>
-                                                <li><span><strong>Módelo</strong> SE</span></li>
-                                                <li><span><strong>Año:</strong> 1998</span></li>
-                                                <li><span><strong>Color:</strong> Negro</span></li>
-                                                <li><span><strong>Placa:</strong> AB000XK</span></li>
-                                                <li><span><strong>Alias:</strong> N/A</span></li>
+                                                <li><span><strong>Número asignado:</strong> {{ vehicle.number }}</span></li>
+                                                <li><span><strong>Módelo</strong> {{ vehicle.model }}</span></li>
+                                                <li><span><strong>Año:</strong> {{ vehicle.year }}</span></li>
+                                                <li><span><strong>Color:</strong> {{ vehicle.color }}</span></li>
+                                                <li><span><strong>Placa:</strong> {{ vehicle.license_vehicle }}</span></li>
+                                                <li><span><strong>Alias:</strong> {{ vehicle.alias }}</span></li>
                                             </ul>
                                         </div>
 
                                         <div class="col">
-                                            <img src="{% static 'cars/neon.jpg' %}" alt="" width="100%">
+                                            <img src="{{ vehicle.image.url }}" alt="" width="80%" class="pl-5">
                                         </div>
+                                        <span class="link pr-5"><i class="fas fa-car"></i> <a
+                                        href={% url 'vehicles' %}>Administrar mis vehiculos</a></span>
                                     </div>
-                                    <a href={% url 'vehicles' %}>Administrar Mis vehiculos</a>
+                    {% endif %}
                                 </div>
                             </div>
                         </div>

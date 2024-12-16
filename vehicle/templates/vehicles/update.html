@@ -1,0 +1,83 @@
+{% extends 'backoffice/template.html' %}
+{% load static %}
+{% block backoffice %}
+    <div class="container-fluid mb-12">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h3 class="h3 mb-0 text-gray-800 text-blue-500"><i class="fas fa-car"></i>
+                Actualizar <span class="text-end pr-2">({{ vehicle.type_vehicle }})</span> <span class="text-start">{{ vehicle.brand }} - {{ vehicle.model }}</span>
+
+            </h3>
+        </div>
+        <div class="row">
+            <div class="offset-1 col-10 card pl-0 pr-0">
+                <div class="card-header text-bg-primary">
+                    Actualizar vehiculo
+                </div>
+                <form method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="form-row card-body">
+                        <div class="col-12">
+                            {% if form.errors %}
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <div class="alert alert-danger">
+                                           <i class="fas fa-exclamation-triangle"></i>
+                                            <span>{{ error|escape }}</span>
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+
+                        <div class="col-6">
+                            <label for="type_vehicle" class="form-label">Tipo de Vehiculo</label>
+                            {{ form.type_vehicle }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="brand" class="form-label">Marca</label>
+                            {{ form.brand }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="year" class="form-label">Año</label>
+                            {{ form.year }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="year" class="form-label">Módelo</label>
+                            {{ form.model }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="color" class="form-label">Color</label>
+                            {{ form.color }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="license_vehicle" class="form-label">Placa de Vehiculo</label>
+                            {{ form.license_vehicle }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="transmission" class="form-label">Transmisión</label>
+                            {{ form.transmission }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="number" class="form-label">Número asignado</label>
+                            {{ form.number }}
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="alias" class="form-label">Apodo de Vehiculo (Opcional)</label>
+                            {{ form.alias }}
+                        </div>
+                        <div class="col-12 mb-3">
+                            <label for="image" class="form-label">Fotos del vehiculo</label>
+                            {{ form.image }}
+                        </div>
+
+                        <div class="col-12 mt-2 mb-3">
+                            <button type="submit" class="btn btn-primary mr-2"><i class="fas fa-save pr-2"></i> Actualizar</button>
+                            <a href="{% url 'vehicles_detail' pk=vehicle.id %}" class="btn btn-secondary"><i class="fas fa-backward pr-2"></i> Volver</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+{% endblock %}

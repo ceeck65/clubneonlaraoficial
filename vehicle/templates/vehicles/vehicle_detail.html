@@ -1,0 +1,119 @@
+{% extends 'backoffice/template.html' %}
+{% load static %}
+{% block backoffice %}
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h3 class="h3 mb-0 text-gray-800 text-blue-500"><i class="fas fa-car"></i> {{ vehicle.brand }}
+                - {{ vehicle.model }}</h3>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="card text-center">
+                                    <img src="{{ vehicle.image.url }}" alt="" width="100%">
+                                </div>
+
+                            </div>
+                            <div class="col-9">
+                                <div class="row">
+
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <span class="text-info">Detalles de vehículo</span>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li><span><strong> Tipo:</strong> {{ vehicle.type_vehicle }}</span>
+                                                    </li>
+                                                    <li><span><strong> Marca:</strong> {{ vehicle.brand }}</span></li>
+                                                    <li><span><strong>Año:</strong> {{ vehicle.year }}</span></li>
+                                                    <li><span><strong>Color:</strong> {{ vehicle.color }}</span></li>
+                                                    <li>
+                                                        <span><strong>Placa:</strong> {{ vehicle.license_vehicle }}</span>
+                                                    </li>
+                                                    {% if vehicle.alias != None %}
+                                                        <li><span><strong>Alias:</strong> {{ vehicle.alias }}</span>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if vehicle.number != None %}
+                                                        <li><span><strong>Número:</strong> {{ vehicle.number }}</span>
+                                                        </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <span class="text-info">Información técnica</span>
+                                            </div>
+                                            <div class="card-body">
+                                                {% if maintenance %}
+                                                <ul>
+                                                    <li>
+                                                        <span><strong> Motor:</strong> {{ maintenance.motor }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span><strong>Km/ph:</strong> {{ maintenance.km_actual }} Km/ph</span>
+                                                    </li>
+                                                    <li>
+                                                        <span><strong>Cambio de aceite:</strong> {{ maintenance.oil }} Km.</span>
+                                                    </li>
+                                                    <li>
+                                                        <span><strong>Correa de tiempo:</strong> {{ maintenance.timing_belt }} Km.</span>
+                                                    </li>
+                                                    <li>
+                                                        <span><strong>Filtros de Gasolina:</strong> {{ maintenance.fuel }} Lt.</span>
+                                                    </li>
+                                                    <li>
+                                                        <span><strong>Mantenimientos de Fenos:</strong> {{ maintenance.break_automobile }}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span><strong>Ultimo Mantenimiento:</strong> {{ maintenance.date }}</span>
+                                                    </li>
+                                                </ul>
+                                                {% else %}
+
+                                                    <span class="text-center link">No tiene mantenimientos registrados</span>
+
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-12 mt-4">
+                                <span class="link pr-5"><i class="fas fa-list"></i> <a
+                                        href={% url 'vehicles' %}>Todos mis vehiculos</a></span>
+                                <span class="link pr-5"><i class="fas fa-edit"></i> <a
+                                        href={% url 'vehicles_update' pk=vehicle.id %}>Editar vehiculo</a></span>
+
+                                <span class="link pr-5"><i class="fas fa-tools"></i> <a
+                                        href="">Mantenimiento del vehiculo</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+
+            li {
+                list-style: none;
+            }
+
+            ol, ul {
+                padding-left: 0 !important;
+            }
+
+        </style>
+
+
+{% endblock %}

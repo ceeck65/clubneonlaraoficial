@@ -1,11 +1,17 @@
 from django.urls import path, include, re_path
-from .views import dashboard, profile, vehicles
-
+from .views import dashboard, profile
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', dashboard, name = 'admin'),
-    path('admin/dashboard/', dashboard, name = 'dashboard'),
-    path('admin/profile/', profile, name = 'profile'),
-
-    path('admin/vehicles/', vehicles, name='vehicles'),
+    path('', dashboard, name = 'admin'),
+    path('dashboard/', dashboard, name = 'dashboard'),
+    path('profile/', profile, name = 'profile'),
+    path('vehicles/', include('vehicle.urls')),
 ]
+
+
+# Media route
+
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

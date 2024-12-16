@@ -1,14 +1,14 @@
 {% extends 'backoffice/template.html' %}
 {% load static %}
 {% block backoffice %}
-    <div class="container-fluid  class="mb-5"">
+    <div class="container-fluid mb-5">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h3 class="h3 mb-0 text-gray-800 text-blue-500"><i class="fas fa-id-card"></i> Mi Perfil</h3>
         </div>
         <div class="row">
 
             <!-- Profile 1 - Bootstrap Brain Component -->
-            <section  class="mb-5">
+            <section class="mb-5">
 
                 <div class="container">
                     <div class="row gy-4 gy-lg-0">
@@ -16,14 +16,16 @@
                             <div class="row gy-4">
                                 <div class="col-12">
                                     <div class="card widget-card border-light shadow-sm">
-                                        <div class="card-header text-bg-primary">Hola, {{ user.first_name }} {{ user.last_name }}</div>
+                                        <div class="card-header text-bg-primary">
+                                            Hola, {{ user.first_name }} {{ user.last_name }}
+                                        </div>
                                         <div class="card-body">
                                             <div class="text-center mb-3">
-                                                <img src="https://bootstrapbrain.com/demo/components/profiles/profile-1/assets/img/profile-img-1.jpg"
-                                                     class="img-fluid rounded-circle" alt="Luna John">
+                                                <img src="{{ user.profile.image.url }}" width="80%"
+                                                     class="img-fluid rounded-circle">
                                             </div>
                                             <h5 class="text-center mb-1">{{ user.first_name }} {{ user.last_name }}</h5>
-                                            <p class="text-center text-secondary mb-4">Coordinador de redes sociales y sistemas</p>
+                                            <p class="text-center text-secondary mb-4">{{ user.profile.job }}</p>
                                             <!--ul class="list-group list-group-flush mb-4">
                                                 <li class="list-group-item d-flex justify-content-between align-items-center">
                                                     <h6 class="m-0">Neón</h6>
@@ -48,13 +50,15 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
                                                     data-bs-target="#overview-tab-pane" type="button" role="tab"
-                                                    aria-controls="overview-tab-pane" aria-selected="true">Descripción general
+                                                    aria-controls="overview-tab-pane" aria-selected="true">Descripción
+                                                general
                                             </button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
                                                     data-bs-target="#profile-tab-pane" type="button" role="tab"
-                                                    aria-controls="profile-tab-pane" aria-selected="false">Datos de Perfil
+                                                    aria-controls="profile-tab-pane" aria-selected="false">Datos de
+                                                Perfil
                                             </button>
                                         </li>
 
@@ -69,8 +73,7 @@
                                         <div class="tab-pane fade show active" id="overview-tab-pane" role="tabpanel"
                                              aria-labelledby="overview-tab" tabindex="0">
                                             <h5 class="mb-3">Acerca de mi</h5>
-                                            <p class="lead mb-3">Ethan Leo is a seasoned and results-driven Project
-                                                Manager who brings experience and expertise to project management.</p>
+                                            <p class="lead mb-3">{{ user.profile.biography }}</p>
                                             <h5 class="mb-3">Perfil</h5>
                                             <div class="row g-0">
                                                 <div class="col-5 col-md-3 bg-light border-bottom border-white border-3">
@@ -132,13 +135,13 @@
                                         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
                                              aria-labelledby="profile-tab" tabindex="0">
                                             <form action="" class="row gy-3 gy-xxl-4" method="post">
-                                              {% csrf_token %}
+                                                {% csrf_token %}
                                                 <div class="col-12">
                                                     <div class="row gy-2">
-                                                        <label class="col-12 form-label m-0">Profile Image</label>
+                                                        <label class="col-12 form-label m-0">Foto de perfil</label>
                                                         <div class="col-12">
-                                                            <img src="./assets/img/profile-img-1.jpg" class="img-fluid"
-                                                                 alt="Luna John">
+                                                            <img src="{{ user.profile.image.url }}" class="img-fluid"
+                                                                 alt="" width="20%">
                                                         </div>
                                                         <div class="col-12">
                                                             <a href="#!"
@@ -175,8 +178,8 @@
                                                     {{ form.address }}
                                                 </div>
                                                 <div class="col-12 col-md-6">
-                                                    <label for="counrty" class="form-label">País</label>
-                                                    {{ form.counrty }}
+                                                    <label for="country" class="form-label">País</label>
+                                                    {{ form.country }}
                                                 </div>
                                                 <div class="col-12 col-md-6">
                                                     <label for="telephone" class="form-label">Teléfono</label>
@@ -191,7 +194,8 @@
                                                     {{ form.biography }}
                                                 </div>
                                                 <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                                    <button type="submit" class="btn btn-primary">Guardar cambios
+                                                    </button>
                                                 </div>
 
 
@@ -277,9 +281,7 @@
                         </div>
                     </div>
                 </div>
-
             </section>
-
         </div>
     </div>
 {% endblock %}

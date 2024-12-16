@@ -1,0 +1,73 @@
+{% extends 'backoffice/template.html' %}
+{% load static %}
+{% block backoffice %}
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h3 class="h3 mb-0 text-gray-800 text-blue-500"><i class="fas fa-car"></i> Mis Vehículos</h3>
+        </div>
+        <div class="row">
+            {% if vehicles.count == 0 %}
+                <div class="col-12 text-center mt-8">
+                    <h3 class="text-center mb-3">
+                        No tienes Vehiculos registrados
+                    </h3>
+                   <a href="{% url 'vehicles_new' %}" class="link mt-4">
+                       <i class="fas fa-plus-circle pr-1"></i> Registra tu vehículo</a>
+                </div>
+            {% else %}
+
+                {% for vehicle in vehicles %}
+                    <div class="col-4">
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">
+                                    <span class="text-start">{{ vehicle.brand }} - {{ vehicle.model }}</span>
+                                    <span class="text-end pl-2">({{ vehicle.type_vehicle }})</span>
+                                </h6>
+                            </div>
+                            <div class="card-body" style="height: 260px;">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <span class="text-info">Ficha Técnica</span>
+                                        <ul class="mt-3">
+                                            <li><span><strong> Marca</strong> {{ vehicle.brand }}</span></li>
+                                            <li><span><strong>Año:</strong> {{ vehicle.year }}</span></li>
+                                            <li><span><strong>Color:</strong> {{ vehicle.color }}</span></li>
+                                            <li><span><strong>Placa:</strong> {{ vehicle.license_vehicle }}</span></li>
+                                             {% if vehicle.alias != None %}
+                                                <li><span><strong>Alias:</strong> {{ vehicle.alias }}</span></li>
+                                            {% endif %}
+                                            {% if vehicle.number != None %}
+                                                <li><span><strong>Número:</strong> {{ vehicle.number }}</span></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <img src="{{ vehicle.image.url }}" alt="" width="100%">
+                                    </div>
+                                </div>
+                                <span class="link pr-5"><i class="fas fa-car"></i> <a
+                                        href={% url 'vehicles_detail' pk=vehicle.id %}>Administrar</a></span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+
+    <style>
+
+        li {
+            list-style: none;
+        }
+
+        ol, ul {
+            padding-left: 0 !important;
+        }
+
+    </style>
+
+
+{% endblock %}

@@ -18,7 +18,7 @@ class ProfileForms(forms.Form):
     last_name = forms.CharField(label="Apellidos", required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu apellido'}))
     birthday = forms.CharField(label="Cumpleaños", required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu fecha de cumpleaños'}))
     address = forms.CharField(label="Dirección", required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu dirección'}))
-    counrty = CountryField(blank_label="Seleccione País").formfield(widget=CountrySelectWidget(attrs={"class": "form-select form-control"}))
+    country = CountryField(blank_label="Seleccione País").formfield(widget=CountrySelectWidget(attrs={"class": "form-select form-control"}))
     job = forms.CharField(label="Profesión", required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu profesión'}))
     gender = forms.ChoiceField(choices = GENDER_CHOICES, label="Género", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
     telephone = forms.CharField(label="Teléfono", required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingresa tu número de teléfono'}))
