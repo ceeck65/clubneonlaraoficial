@@ -11,9 +11,6 @@
     };
     spinner();
     
-    
-    // Initiate the wowjs
-    new WOW().init();
 
 
     // Sticky Navbar
@@ -67,26 +64,6 @@
         return false;
     });
 
-
-    // Facts counter
-/*
-    $('[data-toggle="counter-up"]').counterUp({
-        delay: 10,
-        time: 2000
-    });
-*/
-
-
-    // Date and time picker
-/*
-    $('.date').datetimepicker({
-        format: 'L'
-    });
-    $('.time').datetimepicker({
-        format: 'LT'
-    });
-
-*/
 
     // Testimonials carousel
 /*    $(".testimonial-carousel").owlCarousel({
